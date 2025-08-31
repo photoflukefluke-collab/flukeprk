@@ -42,11 +42,11 @@ local function buildPayload()
               {
                 name = "User Data",
                 value = 
-                    "🐣 Level : "..tostring(LocalPlayer:GetAttribute("Level")).."\n".. 
+                    "🟢 Level : "..tostring(LocalPlayer:GetAttribute("Level")).."\n".. 
                     "💰 Gold : "..tostring(LocalPlayer:GetAttribute("Gold")).."\n".. 
                     "💎 Gems : "..tostring(LocalPlayer:GetAttribute("Gems")).."\n".. 
-                    "🍁 Flowers : "..tostring(LocalPlayer:GetAttribute("Flowers")).."\n".. 
-                    "💦 IcedTea : "..tostring(iced),
+                    "🌸 Flowers : "..tostring(LocalPlayer:GetAttribute("Flowers")).."\n".. 
+                    "🥤 IcedTea : "..tostring(iced),
                 inline = false
               },
             },
