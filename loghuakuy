@@ -1,0 +1,79 @@
+-- ⚠️ ระวังอย่าให้ webhook หลุด
+_G.url_webhook_discord_send = _G.url_webhook_discord_send or "" 
+_G.delay_send = _G.delay_send or 600 -- default = 10 นาที
+
+task.wait(20) -- รอ 20 วิก่อนเริ่ม
+
+repeat
+    task.wait()
+until game:IsLoaded() and game.Players.LocalPlayer
+
+local LocalPlayer = game.Players.LocalPlayer
+local HttpService = game:GetService("HttpService")
+
+-- ฟังก์ชันเลือกสี embed ตาม IcedTea
+local function getColorByIcedTea(value)
+    if value < 1000000 then -- < 1M
+        return 0x2ECC71 -- เขียว
+    elseif value < 2000000 then -- 1M - 2M
+        return 0xF1C40F -- เหลือง
+    elseif value < 3000000 then -- 2M - 3M
+        return 0xE67E22 -- ส้ม
+    else -- >= 3M
+        return 0xE74C3C -- แดง
+    end
+end
+
+-- ฟังก์ชันสร้าง payload
+local function buildPayload()
+    local iced = LocalPlayer:GetAttribute("IcedTea") or 0
+    local data = {
+        content = nil,
+        embeds = {
+          {
+            title = "*__🔥 Map : Anime Vanguards 🔥__*", -- ตัวหนา + ตัวเอียง + emoji ไฟหัวท้าย
+            description = 
+                "*Name :* **"..LocalPlayer.Name.."**\n"..  
+                "*UserId :* **"..LocalPlayer.UserId.."**\n".. 
+                "*Executor :* **"..(identifyexecutor and identifyexecutor() or "Unknown").."**",
+            color = getColorByIcedTea(iced),
+            fields = {
+              {
+                name = "***User Data***", -- ตัวหนา + ตัวเอียง
+                value = 
+                    "🟢 Level : `"..tostring(LocalPlayer:GetAttribute("Level")).."`\n".. 
+                    "💰 Gold : `"..tostring(LocalPlayer:GetAttribute("Gold")).."`\n".. 
+                    "💎 Gems : `"..tostring(LocalPlayer:GetAttribute("Gems")).."`\n".. 
+                    "🌸 Flowers : `"..tostring(LocalPlayer:GetAttribute("Flowers")).."`\n".. 
+                    "🥤 IcedTea : `"..tostring(iced).."`",
+                inline = false
+              },
+            },
+            footer = {
+              text = "*By Fluke Parakorn*", -- ตัวเอียง
+            },
+            timestamp = DateTime.now():ToIsoDate(),
+          },
+        },
+    }
+    return HttpService:JSONEncode(data)
+end
+
+-- ส่ง Webhook
+local headers = {["content-type"] = "application/json"}
+local request = http_request or request or HttpPost
+
+-- กำหนด loop ส่งอัตโนมัติ
+_G.Workspace = true
+task.spawn(function()
+    while _G.Workspace do 
+        local body = buildPayload()
+        request({
+            Url = _G.url_webhook_discord_send,
+            Method = "POST",
+            Headers = headers,
+            Body = body
+        })
+        task.wait(_G.delay_send or 600)
+    end
+end)
