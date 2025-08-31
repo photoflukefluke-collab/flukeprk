@@ -31,26 +31,26 @@ local function buildPayload()
         content = nil,
         embeds = {
           {
-            title = "*__🔥 Map : Anime Vanguards 🔥__*", -- ตัวหนา + ตัวเอียง + emoji ไฟหัวท้าย
+            title = "**🔥 Map : Anime Vanguards 🔥**", -- ตัวหนา + emoji ไฟหัวท้าย
             description = 
-                "*Name :* **"..LocalPlayer.Name.."**\n"..  
-                "*UserId :* **"..LocalPlayer.UserId.."**\n".. 
-                "*Executor :* **"..(identifyexecutor and identifyexecutor() or "Unknown").."**",
+                "**Name :** **"..LocalPlayer.Name.."**\n"..  
+                "**UserId :** **"..LocalPlayer.UserId.."**\n".. 
+                "**Executor :** **"..(identifyexecutor and identifyexecutor() or "Unknown").."**",
             color = getColorByIcedTea(iced),
             fields = {
               {
-                name = "***User Data***", -- ตัวหนา + ตัวเอียง
+                name = "**User Data**", -- ตัวหนา
                 value = 
-                    "🟢 Level : `"..tostring(LocalPlayer:GetAttribute("Level")).."`\n".. 
-                    "💰 Gold : `"..tostring(LocalPlayer:GetAttribute("Gold")).."`\n".. 
-                    "💎 Gems : `"..tostring(LocalPlayer:GetAttribute("Gems")).."`\n".. 
-                    "🌸 Flowers : `"..tostring(LocalPlayer:GetAttribute("Flowers")).."`\n".. 
-                    "🥤 IcedTea : `"..tostring(iced).."`",
+                    "**🟢 Level :** `"..tostring(LocalPlayer:GetAttribute("Level")).."`\n".. 
+                    "**💰 Gold :** `"..tostring(LocalPlayer:GetAttribute("Gold")).."`\n".. 
+                    "**💎 Gems :** `"..tostring(LocalPlayer:GetAttribute("Gems")).."`\n".. 
+                    "**🌸 Flowers :** `"..tostring(LocalPlayer:GetAttribute("Flowers")).."`\n".. 
+                    "**🥤 IcedTea :** `"..tostring(iced).."`",
                 inline = false
               },
             },
             footer = {
-              text = "*By Fluke Parakorn*", -- ตัวเอียง
+              text = "**by tarzzth script**", -- ตัวหนา
             },
             timestamp = DateTime.now():ToIsoDate(),
           },
