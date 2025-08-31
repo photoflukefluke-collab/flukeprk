@@ -2,7 +2,7 @@
 _G.url_webhook_discord_send = _G.url_webhook_discord_send or "" 
 _G.delay_send = _G.delay_send or 600 -- default = 10 นาที
 
-task.wait(20) -- รอ 20 วิก่อนเริ่ม
+task.wait(20) -- 
 
 repeat
     task.wait()
@@ -14,13 +14,13 @@ local HttpService = game:GetService("HttpService")
 -- ฟังก์ชันเลือกสี embed ตาม IcedTea
 local function getColorByIcedTea(value)
     if value < 1000000 then -- < 1M
-        return 0x2ECC71 -- เขียว
+        return 0x2ECC71 -- 
     elseif value < 2000000 then -- 1M - 2M
-        return 0xF1C40F -- เหลือง
+        return 0xF1C40F -- 
     elseif value < 3000000 then -- 2M - 3M
-        return 0xE67E22 -- ส้ม
+        return 0xE67E22 -- 
     else -- >= 3M
-        return 0xE74C3C -- แดง
+        return 0xE74C3C -- 
     end
 end
 
@@ -31,26 +31,22 @@ local function buildPayload()
         content = nil,
         embeds = {
           {
-            title = "**🔥 Map : Anime Vanguards 🔥**", -- ตัวหนา + emoji ไฟหัวท้าย
-            description = 
-                "**Name :** **"..LocalPlayer.Name.."**\n"..  
-                "**UserId :** **"..LocalPlayer.UserId.."**\n".. 
-                "**Executor :** **"..(identifyexecutor and identifyexecutor() or "Unknown").."**",
+            title = "**🔥 Map : Anime Vanguards 🔥**", -- 
             color = getColorByIcedTea(iced),
             fields = {
               {
-                name = "**User Data**", -- ตัวหนา
+                name = "User Data",
                 value = 
-                    "**🟢 Level :** `"..tostring(LocalPlayer:GetAttribute("Level")).."`\n".. 
-                    "**💰 Gold :** `"..tostring(LocalPlayer:GetAttribute("Gold")).."`\n".. 
-                    "**💎 Gems :** `"..tostring(LocalPlayer:GetAttribute("Gems")).."`\n".. 
-                    "**🌸 Flowers :** `"..tostring(LocalPlayer:GetAttribute("Flowers")).."`\n".. 
-                    "**🥤 IcedTea :** `"..tostring(iced).."`",
+                    "🟢 Level : "..tostring(LocalPlayer:GetAttribute("Level")).."\n".. 
+                    "💰 Gold : "..tostring(LocalPlayer:GetAttribute("Gold")).."\n".. 
+                    "💎 Gems : "..tostring(LocalPlayer:GetAttribute("Gems")).."\n".. 
+                    "🌸 Flowers : "..tostring(LocalPlayer:GetAttribute("Flowers")).."\n".. 
+                    "🥤 IcedTea : "..tostring(iced),
                 inline = false
               },
             },
             footer = {
-              text = "**by tarzzth script**", -- ตัวหนา
+              text = "By Fluke Parakorn",
             },
             timestamp = DateTime.now():ToIsoDate(),
           },
